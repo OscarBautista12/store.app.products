@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db.iqyaafkgfgrmmqalmrze.supabase.co:5432/postgres?sslmode=require
+    username: postgres
+    password: Prosgres1234!
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: ms_products
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+server:
+  port: 8081
