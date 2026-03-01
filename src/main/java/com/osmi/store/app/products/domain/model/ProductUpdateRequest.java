@@ -1,70 +1,35 @@
 package com.osmi.store.app.products.domain.model;
 
-import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "products")
-public class Product {
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class ProductUpdateRequest {
 
-	@Column(nullable = false, unique = true)
+	@NotBlank
 	private String name;
 
-	@Column(length = 2000)
 	private String description;
 
-	@Column(nullable = false)
+	@NotBlank
 	private String brand;
 
-	@Column(nullable = false)
+	@NotNull
 	private Long categoryId;
 
-	@Column(nullable = false)
+	@NotNull
+	@Positive
 	private BigDecimal basePrice;
 
-	@Column(nullable = false)
+	@NotNull
+	@Positive
 	private BigDecimal baseDiscountPercentage;
-
+	
 	@Column(name = "active", nullable = false)
 	private Integer active;
-	
-	@Column(nullable = false)
-	private Integer stock;
-
-	// 🔹 Constructor vacío obligatorio para JPA
-	public Product() {
-	}
-
-	// 🔹 Constructor completo (opcional pero profesional)
-	public Product(Long id, String name, String description, String brand, Long categoryId, BigDecimal basePrice,
-			BigDecimal baseDiscountPercentage, Integer active, Integer stock) {
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.brand = brand;
-		this.categoryId = categoryId;
-		this.basePrice = basePrice;
-		this.baseDiscountPercentage = baseDiscountPercentage;
-		this.active = active;
-		this.stock = stock;
-	}
-
-	// 🔹 Getters y Setters
-
-	public Long getId() {
-		return id;
-	}
-
-	// No es obligatorio setear ID manualmente,
-	// pero lo dejamos por si algún día lo necesitas.
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -121,14 +86,7 @@ public class Product {
 	public void setActive(Integer active) {
 		this.active = active;
 	}
-
-	public Integer getStock() {
-		return stock;
-	}
-
-	public void setStock(Integer stock) {
-		this.stock = stock;
-	}
+	
 	
 	
 }
